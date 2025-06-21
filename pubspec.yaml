@@ -1,6 +1,6 @@
 name: auth_wrapper
 description: A simple Dart package for handling authentication logic.
-version: 1.0.1
+version: 1.0.2
 homepage: https://arjunkattel.com.np
 environment:
   sdk: '>=3.0.0 <4.0.0'
