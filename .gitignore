@@ -1,0 +1,26 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub/
+build/
+flutter_*.png
+
+# IDEs and editors
+.idea/
+.vscode/
+*.iml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Others
+*.log
+*.lock
+*.tmp
+*.swp
+
+# Dependency override files
+pubspec.lock
