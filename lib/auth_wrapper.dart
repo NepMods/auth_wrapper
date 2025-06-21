@@ -3,13 +3,27 @@ library auth_wrapper;
 import 'package:auth_wrapper/models/AuthRoute.dart';
 import 'package:flutter/material.dart';
 
+/// A widget that checks authentication status before displaying [child].
+///
+/// Displays a loading indicator while [checkFunc] is running, and
+/// navigates to [fallbackRoute] if not authenticated.
 class AuthWrapper extends StatelessWidget {
+  /// A function that returns `true` if the user is authenticated.
   final Future<bool> Function() checkFunc;
+
+  /// Named route to navigate to when authentication fails.
   final String fallbackRoute;
+
+  /// Widget to show when authentication succeeds.
   final Widget child;
+
+  /// Callback to show a loading indicator (not used internally).
   final void Function() showLoading;
+
+  /// Callback to hide a loading indicator (not used internally).
   final void Function() hideLoading;
 
+  /// Creates an [AuthWrapper] with required authentication parameters.
   const AuthWrapper({
     required this.checkFunc,
     required this.fallbackRoute,
@@ -41,16 +55,36 @@ class AuthWrapper extends StatelessWidget {
   }
 }
 
+/// A widget that configures and wraps a [MaterialApp] with
+/// public and protected routes.
+///
+/// Uses [AuthWrapper] internally to guard protected routes.
 class UseAuth extends StatefulWidget {
+  /// List of routes accessible without authentication.
   final List<AuthRoute> publicPages;
+  
+  /// List of routes that require authentication.
   final List<AuthRoute> protectedPages;
+  
+  /// Named route to use when no authentication is present (e.g., login page).
   final String noAuth;
+  
+  /// Function to check if the user is authenticated.
   final Future<bool> Function() checkFunc;
+  
+  /// Callback to show a loading indicator.
   final void Function() showLoading;
+  
+  /// Callback to hide a loading indicator.
   final void Function() hideLoading;
+  
+  /// The base [MaterialApp] configuration to extend.
   final MaterialApp app;
+  
+  /// Named route to navigate to when authentication succeeds.
   final String success;
 
+  /// Creates a [UseAuth] widget to manage app routing based on auth state.
   const UseAuth({
     required this.publicPages,
     required this.protectedPages,
@@ -66,6 +100,7 @@ class UseAuth extends StatefulWidget {
   @override
   State<UseAuth> createState() => _UseAuthState();
 }
+
 class _UseAuthState extends State<UseAuth> {
   late Future<bool> loginCheckFuture;
 
@@ -83,7 +118,6 @@ class _UseAuthState extends State<UseAuth> {
         if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
         }
-
 
         final alreadyLoggedIn = snapshot.data ?? false;
         final routes = <String, WidgetBuilder>{};
@@ -148,7 +182,9 @@ class _UseAuthState extends State<UseAuth> {
   }
 }
 
+/// A simple 404 page displayed when a route is not found.
 class NotFoundPage extends StatelessWidget {
+  /// Creates a const [NotFoundPage].
   const NotFoundPage({super.key});
 
   @override
