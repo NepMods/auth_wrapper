@@ -174,7 +174,6 @@ class _UseAuthState extends State<UseAuth> {
           actions: widget.app.actions,
           restorationScopeId: widget.app.restorationScopeId,
           scrollBehavior: widget.app.scrollBehavior,
-          useInheritedMediaQuery: widget.app.useInheritedMediaQuery,
           themeAnimationStyle: widget.app.themeAnimationStyle,
         );
       },
