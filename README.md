@@ -22,7 +22,7 @@ Add the following to your `pubspec.yaml`:
 dependencies:
   auth_wrapper:
     git:
-      url: https://github.com/yourname/auth_wrapper.git
+      url: https://github.com/nepmods/auth_wrapper.git
 ```
 
 Or, if published:
